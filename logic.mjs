@@ -1,17 +1,17 @@
 function findmax(matrix){
     var temp = 0;
-    var x,y;
+    var ox,oy;
     var conteiner=[];
     for (let i=0; i<matrix.length; i++){
         for(let j=0; j< matrix[0].length; j++){
-            if(matrix[i][j] >= temp) temp = matrix[i][j];
+            if(matrix[i][j] >= temp){
+                temp = matrix[i][j];
+                ox = i;
+                oy = j;
+            }
         }
     }
-    for (let i=0; i<matrix.length; i++){
-        for(let j=0; j< matrix[0].length; j++){
-            if(matrix[i][j] === temp) conteiner.push([i,j]);
-        }
-    }
+    conteiner.push([ox,oy]);
     return conteiner;
 }
 
@@ -21,28 +21,28 @@ function surfacefinder(matrix, center){
     for(var position of center){
         x = position[0];
         y = position[1];
-        if ((x - 1 > -1) && (y - 1 > -1) && (matrix[x][y] > matrix[x - 1][y - 1])
+        if ((x - 1 > -1) && (y - 1 > -1) && (matrix[x][y] > matrix[x - 1][y - 1]) && (matrix[x-1][y-1] !== -1)
             && !(tableinclude(container,[x - 1, y - 1])) && !(tableinclude(center,[x - 1, y - 1])))
             container.push([x - 1, y - 1]);
-        if ((x - 1 > -1) && (matrix[x][y] > matrix[x - 1][y])
+        if ((x - 1 > -1) && (matrix[x][y] > matrix[x - 1][y]) && (matrix[x-1][y] !== -1)
             && !(tableinclude(container,[x - 1, y])) && !(tableinclude(center,[x - 1, y])))
             container.push([x - 1, y]);
-        if ((x - 1 > -1) && (y + 1 < matrix[0].length) && (matrix[x][y] > matrix[x - 1][y + 1])
+        if ((x - 1 > -1) && (y + 1 < matrix[0].length) && (matrix[x][y] > matrix[x - 1][y + 1]) && (matrix[x-1][y+1] !== -1)
             && !(tableinclude(container,[x - 1, y + 1])) && !(tableinclude(center,[x - 1, y + 1])))
             container.push([x - 1, y + 1]);
-        if ((y - 1 > -1) && (matrix[x][y] > matrix[x][y - 1])
+        if ((y - 1 > -1) && (matrix[x][y] > matrix[x][y - 1]) && (matrix[x][y-1] !== -1)
             && !(tableinclude(container,[x, y - 1])) && !(tableinclude(center,[x, y - 1])))
             container.push([x, y - 1]);
-        if ((y + 1 < matrix[0].length) && (matrix[x][y] > matrix[x][y + 1])
+        if ((y + 1 < matrix[0].length) && (matrix[x][y] > matrix[x][y + 1]) && (matrix[x][y+1] !== -1)
             && !(tableinclude(container,[x, y + 1])) && !(tableinclude(center,[x, y + 1])))
             container.push([x, y + 1]);
-        if ((x + 1 < matrix.length) && (y - 1 > -1) && (matrix[x][y] > matrix[x + 1][y - 1])
+        if ((x + 1 < matrix.length) && (y - 1 > -1) && (matrix[x][y] > matrix[x + 1][y - 1]) && (matrix[x+1][y-1] !== -1)
             && !(tableinclude(container,[x + 1, y - 1])) && !(tableinclude(center,[x + 1, y - 1])))
             container.push([x + 1, y - 1]);
-        if ((x + 1 < matrix.length) && (matrix[x][y] > matrix[x + 1][y])
+        if ((x + 1 < matrix.length) && (matrix[x][y] > matrix[x + 1][y]) && (matrix[x+1][y] !== -1)
             && !(tableinclude(container,[x + 1, y])) &&!(tableinclude(center,[x + 1, y])))
             container.push([x + 1, y]);
-        if ((x + 1 < matrix.length) && (y + 1 < matrix[0].length) && (matrix[x][y] > matrix[x + 1][y + 1])
+        if ((x + 1 < matrix.length) && (y + 1 < matrix[0].length) && (matrix[x][y] > matrix[x + 1][y + 1]) && (matrix[x+1][y+1] !== -1)
             && !(tableinclude(container,[x + 1, y + 1])) && !(tableinclude(center,[x + 1, y + 1])))
             container.push([x + 1, y + 1]);
     }
@@ -167,6 +167,9 @@ function fazystep(x,y,matrix, wsp){
         //console.log(matrix);
     }
     return matrix;
+}
+export function testlog() {
+    console.log("test message");
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

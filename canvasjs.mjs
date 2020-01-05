@@ -1,3 +1,5 @@
+import {testlog} from "./logic.mjs";
+import {heatstep} from "./logic.mjs";
 
 
 function maketab(x,y){
@@ -79,10 +81,18 @@ function siterun() {
     maintab[3][5] = 200;
     maintab[5][5] = 360;
     draw(maintab);
+    maintab = heatstep(maintab, 0.01);
+    maintab = heatstep(maintab, 0.01);
+    maintab = heatstep(maintab, 0.01);
+    maintab = heatstep(maintab, 0.01);
+    for(let i=0; i<50; i++) {
+        maintab = heatstep(maintab, 0.01);
+        draw(maintab);
+    }
+    draw(maintab);
+    testlog();
 }
-var maintab = maketab(50,90);
-maintab = freezermaker(maintab,6,40, 45);
-console.log(maintab);
+window.onload = siterun();
 //siterun();
 //var maintab = maketab(10,10);
 //heatstep(maintab, 0.1);
