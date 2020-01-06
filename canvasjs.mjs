@@ -25,13 +25,15 @@ function draw(matrix) {
     var increaseY = height/matrix.length;
 
 
-
+    context.clearRect(0,0,900,500);
     for (let i=0; i<matrix.length; i++){
         for (let j=0; j<matrix[0].length; j++){
             context.fillStyle = colourOfTemp(matrix[i][j]);
+
             context.fillRect(j*increaseY, i*increaseX, increaseX, increaseY);
         }
     }
+
 }
 function colourOfTemp(temperature){
     var red;
@@ -88,11 +90,16 @@ function siterun() {
     for(let i=0; i<50; i++) {
         maintab = heatstep(maintab, 0.01);
         draw(maintab);
+        console.log(i);
     }
     draw(maintab);
     testlog();
 }
 window.onload = siterun();
+var button1 = document.getElementById("button1");
+while(true) {
+    button1.onclick = testlog();
+}
 //siterun();
 //var maintab = maketab(10,10);
 //heatstep(maintab, 0.1);
