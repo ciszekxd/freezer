@@ -70,7 +70,13 @@ function freezermaker(matrix,halfOfWidth, height, mid){
     for (let i=matrix.length-height; i<matrix.length; i++) matrix[i][mid+halfOfWidth]= -1;
     return matrix;
 }
-
+function inFreezer(newVal) {
+    for(let i=matrixHight-mHeight+1; i< matrixHight-1; i++){
+        for (let j= mMid-mHalfOfWidth+1; j<mMid+mHalfOfWidth; j++){
+            maintab[i][j] = newVal;
+        }
+    }
+}
 
 // function siterun() {
 //     var maintab = maketab(50,90);
