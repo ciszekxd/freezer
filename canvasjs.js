@@ -1,5 +1,5 @@
-import {testlog} from "./logic.mjs";
-import {heatstep} from "./logic.mjs";
+//import {testlog} from "./logic.js";
+//import {heatstep} from "./logic.js";
 
 
 function maketab(x,y){
@@ -15,20 +15,17 @@ function maketab(x,y){
 
 
 
-function draw(matrix) {
-    var canvas = document.getElementById('lodowa');
-    var context = canvas.getContext('2d');
-    var height = canvas.clientHeight;
-    var width = canvas.clientWidth;
+function draw() {
 
-    var increaseX = width/matrix[0].length;
-    var increaseY = height/matrix.length;
+
+    var increaseX = width/maintab[0].length;
+    var increaseY = height/maintab.length;
 
 
     context.clearRect(0,0,900,500);
-    for (let i=0; i<matrix.length; i++){
-        for (let j=0; j<matrix[0].length; j++){
-            context.fillStyle = colourOfTemp(matrix[i][j]);
+    for (let i=0; i<maintab.length; i++){
+        for (let j=0; j<maintab[0].length; j++){
+            context.fillStyle = colourOfTemp(maintab[i][j]);
 
             context.fillRect(j*increaseY, i*increaseX, increaseX, increaseY);
         }
@@ -74,32 +71,23 @@ function freezermaker(matrix,halfOfWidth, height, mid){
     return matrix;
 }
 
-function siterun() {
-    var maintab = maketab(50,90);
 
-    maintab = tabOfX(maintab, 333);
-    maintab = freezermaker(maintab,15,40,45);
-    maintab[0][0] = 0;
-    maintab[3][5] = 200;
-    maintab[5][5] = 360;
-    draw(maintab);
-    maintab = heatstep(maintab, 0.01);
-    maintab = heatstep(maintab, 0.01);
-    maintab = heatstep(maintab, 0.01);
-    maintab = heatstep(maintab, 0.01);
-    for(let i=0; i<50; i++) {
-        maintab = heatstep(maintab, 0.01);
-        draw(maintab);
-        console.log(i);
-    }
-    draw(maintab);
-    testlog();
-}
-window.onload = siterun();
-var button1 = document.getElementById("button1");
-while(true) {
-    button1.onclick = testlog();
-}
+// function siterun() {
+//     var maintab = maketab(50,90);
+//
+//     maintab = tabOfX(maintab, 333);
+//     maintab = freezermaker(maintab,15,40,45);
+//     maintab[0][0] = 0;
+//     maintab[3][5] = 200;
+//     maintab[5][5] = 360;
+//     draw(maintab);
+//     heat(maintab);
+// }
+//window.addEventListener('load', siterun);
+//var button1 = document.getElementById("button1");
+//while(true) {
+//  button1.onclick = testlog();
+//}
 //siterun();
 //var maintab = maketab(10,10);
 //heatstep(maintab, 0.1);

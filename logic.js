@@ -65,7 +65,7 @@ function maketab(x,y){
     }
     return matrix;
 }
-export function copy_content(gold) {
+function copy_content(gold) {
     var copy = maketab(gold.length, gold[0].length);
     for (let i=0; i<gold.length; i++){
         for(let j=0; j< gold[0].length; j++){
@@ -90,7 +90,7 @@ function centerfinder(matrix, x, y) {
     }
     return container;
 }
-export function heatstep(matrix, modul) {
+function heatstep(matrix, modul) {
     var copy = copy_content(matrix);
     var delta_plus;
     var delta_minus;
@@ -120,6 +120,10 @@ export function heatstep(matrix, modul) {
     } while(!equality_to_n1(copy));
     //console.log(matrix);
     return matrix;
+}
+function heat() {
+    maintab = heatstep(maintab, 0.1);
+
 }
 function acurassy(prev, matrix){
     var sum = 0;
@@ -168,7 +172,7 @@ function fazystep(x,y,matrix, wsp){
     }
     return matrix;
 }
-export function testlog() {
+function testlog() {
     console.log("test message");
 }
 function sleep(ms) {
