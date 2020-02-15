@@ -14,8 +14,25 @@
             cos nie pyklo
         </canvas>
     </div>
-    <div id="buttons">
-        <button id="button1" onclick="testlog()"> start </button>
+    <div id="buttons1">
+        temperature inside freezer
+        <br>
+        <input id="tempI" type="text" placeholder="temperature inside freezer">
+        <button id="button1" onclick="setTempInside()"> change value </button>
+
+    </div>
+    <div id="buttons2">
+        temperature outside the freezer
+        <br>
+        <input id="tempO" type="text" placeholder="temperature outside the freezer">
+        <button id="button2" onclick="setTempOutside()"> change value </button>
+    </div>
+    <div>
+        <button id="button3" onclick="openDoor()"> open </button>
+        <button id="button4" onclick="closeDoor()"> close </button>
+    </div>
+    <div>
+        <button id="start" onclick="runCanvas()"> start </button>
     </div>
     <script type="text/javascript" src="logic.js"></script>
     <script type="text/javascript" src="canvasjs.js"></script>

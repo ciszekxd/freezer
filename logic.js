@@ -178,37 +178,4 @@ function testlog() {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-// console.log("helloworld");
-//
-// var matrix = maketab(3,3);
-// matrix[0][0] = 1;
-// matrix[0][1] = 2;
-// matrix[0][2] = 1;
-// matrix[1][0] = 5;
-// matrix[1][1] = 4;
-// matrix[1][2] = 7;
-// matrix[2][0] = 10;
-// matrix[2][1] = 2;
-// matrix[2][2] = 10;
-// var macik = maketab(2,2);
-// macik[0][0] = -1;
-// macik[0][1] = -1;
-// macik[1][1] = -1;
-// macik[1][0] = -1;
-// //var opa = centerfinder(matrix,2,2);
-// //var ora = surfacefinder(matrix, opa);
-// for(let i=0; i<500; i++) {
-//     var mat = heatstep(matrix, 0.01);
-//     //sleep(1000);
-//     console.clear();
-//     console.log(matrix);
-//
-// }
-// acurassy(42, mat);
-//
-// //console.log(opa);
-// //console.log(ora);
-// //console.log(macik);
-// //console.log(equality_to_n1(macik));
-// // var mat = fazy1ele(1,1,matrix,0.01);
-// // acurassy(200, mat);
+;

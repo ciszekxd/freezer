@@ -78,22 +78,4 @@ function inFreezer(newVal) {
     }
 }
 
-// function siterun() {
-//     var maintab = maketab(50,90);
-//
-//     maintab = tabOfX(maintab, 333);
-//     maintab = freezermaker(maintab,15,40,45);
-//     maintab[0][0] = 0;
-//     maintab[3][5] = 200;
-//     maintab[5][5] = 360;
-//     draw(maintab);
-//     heat(maintab);
-// }
-//window.addEventListener('load', siterun);
-//var button1 = document.getElementById("button1");
-//while(true) {
-//  button1.onclick = testlog();
-//}
-//siterun();
-//var maintab = maketab(10,10);
-//heatstep(maintab, 0.1);
+
