@@ -125,6 +125,26 @@ function heat() {
     maintab = heatstep(maintab, 0.1);
 
 }
+
+function Freez(checklineB,checklineD,borderValue, module){
+    var activated = 0;
+    for(let ele of checklineB){
+        if (maintab[ele[0]][ele[1]] > borderValue) activated = 1;
+    }
+    for (let ele of checklineD){
+        if (maintab[ele[0]][ele[1]] > borderValue) activated = 1;
+    }
+
+    if(activated === 1){
+        for (let ment of checklineB){
+            maintab[ment[0]][ment[1]] -= module;
+            maintab[ment[0]][ment[1]-2] += module;
+        }
+    }
+
+}
+
+
 function acurassy(prev, matrix){
     var sum = 0;
     for (let i=0; i<matrix.length; i++){

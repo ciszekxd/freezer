@@ -1,4 +1,4 @@
-
+//global variables/////////////////
 var canvas = document.getElementById('lodowa');
 var context = canvas.getContext('2d');
 var height = canvas.clientHeight;
@@ -14,12 +14,20 @@ var mHeight = 40;
 var tempI = 250;
 var tempO = 333;
 var ValueOfDoor = [];
-
+var sensorPositionBack = [];
+var sensorPositionDoor = [];
+////////////////////////////////
 
 function runCanvas(){
-    setInterval(heat, 1000);
-    setInterval(draw,1000);
+    setInterval(siteLoop, 10);
 }
+
+function siteLoop(){
+    heat();
+    if (opened === 0) Freez(sensorPositionBack, sensorPositionDoor, 275, 2);
+    draw();
+}
+
 function setTempInside(){
     tempI = document.getElementById("tempI").value;
 
@@ -38,20 +46,16 @@ function setTempOutside(){
 }
 function openDoor(){
     if(opened === 1) return 0;
-    console.log("started opening");
     var opVD = 0;
     for (let i=maintab.length-mHeight+1; i<maintab.length-1; i++){
         maintab[i][mMid+mHalfOfWidth]  = ValueOfDoor[opVD++];
     }
     opened = 1;
     draw();
-    console.log("opened");
-
 }
 
 function closeDoor(){
     if(opened === 0) return 0;
-    console.log("started closing");
     for (let i=maintab.length-mHeight+1; i<maintab.length-1; i++){
         ValueOfDoor.push(maintab[i][mMid+mHalfOfWidth]);
         maintab[i][mMid+mHalfOfWidth] = -1;
@@ -59,8 +63,6 @@ function closeDoor(){
     }
     opened = 0;
     draw();
-    console.log("closed");
-
 }
 
 
@@ -70,12 +72,16 @@ window.onload = function () {
     for (let k = mHeight-2; k>0; k--) ValueOfDoor.push(333);
     freezermaker(maintab,mHalfOfWidth,mHeight,mMid);
     inFreezer(tempI);
-    maintab[0][0] = 0;
-    maintab[3][5] = 200;
-    maintab[5][5] = 360;
-    maintab[45][11] = 400;
+    for (let i=0; i<mHeight-2; i++) sensorPositionBack.push([maintab.length-mHeight+1+i,mMid-mHalfOfWidth+1]);
+    for (let i=0; i<mHeight-2; i++) sensorPositionDoor.push([maintab.length-mHeight+1+i,mMid+mHalfOfWidth-1]);
+    // for (let position of sensorPositionDoor){
+    //     maintab[position[0]][position[1]] = 1;
+    //     console.log(position);
+    // }
+    //maintab[0][5] = 0;
+    //maintab[3][5] = 200;
+    // maintab[5][5] = 360;
+    // maintab[45][11] = 400;
     draw();
-    console.log(mHeight-2);
-    console.log(ValueOfDoor);
 
 }
