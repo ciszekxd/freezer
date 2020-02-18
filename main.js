@@ -7,7 +7,7 @@ var width = canvas.clientWidth;
 var matrixHight = 50;
 var matrixWidth = 90;
 var opened = 0;
-var maintab = maketab(matrixHight, matrixWidth);
+var maintab = maketab(matrixWidth, matrixHight);
 var mMid = 30;
 var mHalfOfWidth = 15;
 var mHeight = 40;
@@ -79,7 +79,7 @@ window.onload = function () {
     //     console.log(position);
     // }
     //maintab[0][5] = 0;
-    //maintab[3][5] = 200;
+    //maintab[1][5] = 200;
     // maintab[5][5] = 360;
     // maintab[45][11] = 400;
     draw();

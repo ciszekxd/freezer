@@ -11,7 +11,7 @@ function findmax(matrix){
             }
         }
     }
-    conteiner.push([ox,oy]);
+    conteiner.push([oy,ox]);
     return conteiner;
 }
 
@@ -66,7 +66,7 @@ function maketab(x,y){
     return matrix;
 }
 function copy_content(gold) {
-    var copy = maketab(gold.length, gold[0].length);
+    var copy = maketab(gold[0].length, gold.length);
     for (let i=0; i<gold.length; i++){
         for(let j=0; j< gold[0].length; j++){
             copy[i][j] = gold[i][j];
@@ -121,8 +121,50 @@ function heatstep(matrix, modul) {
     //console.log(matrix);
     return matrix;
 }
+function heatstepV2(matrix, modul) {
+    var delta_plus = 0;
+    var delta_minus = 0;
+    var surface = [];
+    for (let y=0; y<matrix.length; y++){
+        for (let x=0; x<matrix[0].length; x++){
+            delta_minus = 0;
+            delta_plus = 0;
+            if(matrix[y][x] === -1) continue;
+            surface = surfacefinder(matrix, [[y,x]]);
+            if(surface.length !== 0){
+                delta_plus = matrix[y][x] * modul / surface.length;
+                delta_minus = matrix[y][x] * modul;
+            }
+            for (poz of surface) matrix[poz[0]][poz[1]] += delta_plus;
+            matrix[y][x] -= delta_minus;
+        }
+    }
+    return matrix;
+}
+function heatstepV3(matrix, modul) {
+    var delta_plus = 0;
+    var delta_minus = 0;
+    var copy = copy_content(matrix);
+    var surface = [];
+    for (let y=0; y<matrix.length; y++){
+        for (let x=0; x<matrix[0].length; x++){
+            delta_minus = 0;
+            delta_plus = 0;
+            if(matrix[y][x] === -1) continue;
+            surface = surfacefinder(matrix, [[y,x]]);
+            if(surface.length !== 0){
+                delta_plus = matrix[y][x] * modul / surface.length;
+                delta_minus = matrix[y][x] * modul;
+            }
+            for (poz of surface) copy[poz[0]][poz[1]] += delta_plus;
+            copy[y][x] -= delta_minus;
+        }
+    }
+    return copy;
+}
+
 function heat() {
-    maintab = heatstep(maintab, 0.1);
+    maintab = heatstepV3(maintab, 0.1);
 
 }
 
@@ -173,29 +215,3 @@ function equality(matrix){
 }
 
 
-function fazystep(x,y,matrix, wsp){
-    var stuck = 0;
-    while(!equality(matrix)){
-        var delta = matrix[x][y] * wsp;
-        matrix[x][y] -= delta;
-        var grow = delta/8;
-        stuck += grow;
-        if(matrix[x][y] < stuck) break ;
-        for (let i=0; i<matrix.length; i++){
-            for (let j=0; j<matrix[0].length; j++){
-                if((x == i) && (y == j)) continue;
-                else matrix[i][j] += grow;
-            }
-        }
-        //console.log("/////////////////////////////////////////////");
-        //console.log(matrix);
-    }
-    return matrix;
-}
-function testlog() {
-    console.log("test message");
-}
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-;

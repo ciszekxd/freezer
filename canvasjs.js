@@ -4,11 +4,12 @@
 
 function maketab(x,y){
     var matrix = [];
-    for(let i = 0; i<x; i++){
-        matrix[i] = [];
-        for(let j = 0; j<y; j++){
-            matrix[i][j] = 0;
+    for(let i = 0; i<y; i++){
+        var inmatrix = [];
+        for(let j = 0; j<x; j++){
+            inmatrix.push(0);
         }
+        matrix.push(inmatrix);
     }
     return matrix;
 }
